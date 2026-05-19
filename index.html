@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="static/lib/jquery.min.js"></script>
+	<script src="static/js/param.js" charset="utf-8"></script>
+	<script src="static/js/main.js" charset="utf-8"></script>
+	<link href="static/lib/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="static/css/styles.css">
+	<link rel="stylesheet" href="static/css/interface.css">
+	<title>Experiment</title>
+</head>
+<body><!-- oncontextmenu="return false" -->
+	<div id="pg_cons" class="ctn_nbg">
+		<div style="text-align: center;padding-top: 10px;"><img src="static/img/uni_logo.jpg" style="width:200px"></div>
+		<h1>Information Sheet for Participants</h1>
+		<iframe src="static/page/consent.html" style="border:0px;width: 100%;height: 700px;"></iframe>
+		<div align="center">
+		<br>
+    	<button id="btn_cons" class="btn-primary btn-lg" onclick="idpro_show()">Consent and Continue</button>
+		</div> <br>
+	</div>
+	<div id="pg_oops" class="ctn" style="padding: 20px; display: none;">
+		<h1>Oops!</h1>
+		<p>Sorry, you appear to have participated in this or a very similar task before! Unfortunately, this means you will not be able to participate in this one. Please return the task so someone else can do it.</p>
+	</div>
+	<div id="pg_oops2" class="ctn" style="padding: 20px; display: none;">
+		<h1>Oops!</h1>
+		<p>Sorry, it fails to connect to the database under your network, which means we might not be able to receive you data (there could be many reasons including our database or the interaction between your network and the database). Please return the task or reload the page later. Thank you very much!!</p>
+	</div>
+
+	<div id="pg_idpro" class="ctn_nbg" style="display: none;"><!-- style="display: none;" -->
+		<h1>Instructions</h1>
+		<div class="ctn" style="padding: 20px;">
+			<p>Please enter your Prolific ID here</p>
+			<p><input type="text" name="idpro" id="idpro" style="width: 400px;" oninput="idpro_check()"></p>
+
+		</div>
+
+		<br>
+		<div align="center">
+    	<button id="btn_idpro" class="btn-primary btn-lg" disabled="true" onclick="ins_show()">Continue</button>
+    	</div>
+	</div>
+
+	<div id="pg_ins" class="ctn_nbg" style="display: none;"><!-- style="display: none;" -->
+		<h1>Instructions</h1> <!-- <img src="static/img/ca.png" style="width:50px">  -->
+		<div id="pg_ins1" class="ctn" style="padding: 20px;">
+			<p>Thank you for participating in this study!</p>
+			<p><b> Please read the instructions very carefully! You will have to pass a test on your understanding before you can start the experiment.</b> </p>
+			<p>Please do not change the zoom level during the experiment. The experiment may only work properly if you have your browser zoom level on 100% throughout.(You can change the zoom level to 100% by pressing "cmd+zero" on a mac or "ctrl+zero" on a PC.)</p>
+
+			<p><b>Please do not refresh this page during the experiment.</b></p>
+
+		</div>
+		<div id="pg_ins2" class="ctn" style="padding: 20px; display: none;">
+			<p>In this task, you will play a game to investigate the causal relationship between treatment solutions 🧪 and plant blooming 🪴.</p>
+
+			<div style="text-align: center"><img src="static/img/ins.png" style="width:400px"></div>
+
+			<br>
+			<p>The first part of the task will have 36 trials. In each trial, you will be asked to judge how effectively a completely new solution (e.g., QTRN52) promotes the blooming of a completely new species of plant (e.g., Velmora — a fictitious name). All solutions have been pre-tested to ensure that they do not prevent any plants from blooming.</p>
+
+			<p>You can gather information by clicking the “Test” button. Each time you click “Test”, you will observe a pair of two plants: one that has received the treatment and one that has not. This allows you to compare outcomes under treatment and no treatment. In each trial, you can test up to 30 times.</p>
+			<br>
+			<div style="text-align: center;"><img src="static/img/demo.png" style="width:400px;border: solid 1px;"></div>
+			<br>
+
+			<p>Plants may bloom on their own even without any treatment, and the probability of self-blooming varies across different plant species. Meanwhile, even an effective treatment may not guarantee blooming every time. Therefore, it is important to consider both treated and untreated cases when making your judgment.</p>
+
+			<div id="ins_type_B">
+				You will be asked "Does solution X cause plant Y to bloom?" and need to choose between "No, it has no effect" and "Yes, it has an effect".<br>
+
+				In other words, imagine a plant that did not receive the solution and did not bloom. The different options indicate how likely it would have been to bloom if it had received the solution:
+				<ul>
+					<li>
+					No, it has no effect: it still would not bloom.
+					</li>
+					<li>
+					Yes, it has an effect: it would have a chance of blooming.
+					</li>
+				</ul>
+
+				<br><br>
+				<div style="text-align: center;"><img src="static/img/demoB.png" style="width:600px;border: solid 1px;"></div><br>
+			</div>
+
+			<div id="ins_type_C">
+				You will be asked: "How much does solution X cause plant Y to bloom?". Give a number from 0 to 100. The number represents the causal power of the solution in causing the plant to bloom.<br><br>
+				
+				In other words, imagine a plant that did not receive the solution and did not bloom. The number indicates how likely it would have been to bloom if it had received the solution — from 0, meaning it still would not bloom, to 100, meaning it definitely would bloom.<br><br>
+
+				However, you do not need to indicate the exact number. You only need to indicate a range (±10) using the black block, as shown in the example below. Your answer will be counted as correct as long as the true score falls within the selected range ⬇️
+
+				<br><br>
+
+				<div style="text-align: center;"><img src="static/img/demoC.png" style="width:600px;border: solid 1px;"></div><br>
+			</div>
+
+			<div id="ins_type_M">
+				You will be asked "How much does solution X cause plant Y to bloom?" and need to choose between "It has no effect", "It has a small effect", and "It has a large effect". <br><br>
+
+				In other words, imagine a plant that did not receive the solution and did not bloom. The different options indicate how likely it would have been to bloom if it had received the solution:
+				<ul>
+					<li>
+					It has no effect: it still would not bloom.
+					</li>
+					<li>
+					It has a small effect: it would have a moderate chance of blooming.
+					</li>
+					<li>
+					It has a large effect: it would have a high chance of blooming.
+					</li>
+				</ul>
+
+				<br><br>
+				<div style="text-align: center;"><img src="static/img/demoM.png" style="width:600px; border: solid 1px;"></div><br>
+			</div>
+
+			<p><b>If your answer is correct, you will receive a bonus of £1, minus £0.01 for each time you click “Test”. If your answer is incorrect, you will not receive any bonus. The final bonus will be determined by randomly selecting one of the 36 trials.</b></p>
+
+			<p>You will then be asked how confident you are in your response. This will not affect your reward, so please try to rate your confidence as accurately as possible. Please avoid always choosing the same one or two confidence levels. Use three of them: </p>
+
+			<div style="text-align: center;"><img src="static/img/demoConf.png" style="width:600px; border: solid 1px;"></div><br>
+
+			<p>There is also a second part of the task that is similar to the first part, but we estimate it to take less time. Instructions will appear after you finish the first part. </p>
+		</div>
+		
+		<div id="pg_ins3" class="ctn pg_check" style="padding: 20px; display: none;">
+			<p> <b>To make sure you understand the instructions, now please indicate whether each of the following statements is true or false. The following explanation is just to make sure you can fully understand the verbs.</b> </p>
+
+			<form>
+				<p>Your job is to determine the effectiveness of solutions on plants.</p>
+				<input type="radio" name="check0" value="yes" id="check0_yes" required="required" onclick="click_comprehension()"><label for="check0_yes">True</label><br>
+				<input type="radio" name="check0" value="no" id="check0_no" required="required" onclick="click_comprehension()"><label for="check0_no">False</label><br><br>
+
+				<p>Your bonus will be determined solely by whether your answer is correct. It is not affected by how many times you test.</p>
+				<input type="radio" name="check1" value="yes" id="check1_yes" required="required" onclick="click_comprehension()"><label for="check1_yes">True</label><br>
+				<input type="radio" name="check1" value="no" id="check1_no" required="required" onclick="click_comprehension()"><label for="check1_no">False</label><br><br>
+
+				<p>The confidence rating will not affect your bonus, and you should try to use different levels across trials to reflect your confidence accurately.</p>
+				<input type="radio" name="check2" value="yes" id="check2_yes" required="required" onclick="click_comprehension()"><label for="check2_yes">True</label><br>
+				<input type="radio" name="check2" value="no" id="check2_no" required="required" onclick="click_comprehension()"><label for="check2_no">False</label><br><br>
+
+
+			</form>
+		</div>
+
+		<div id="pg_nice" class="ctn" style="padding: 20px; display: none;">
+		<p>Well done, you got all the questions correct!</p>
+		<!-- <p>You are now ready to start the task!</p> -->
+		</div>
+
+		<div id="pg_again" class="ctn" style="padding: 20px; display: none;">
+		<p>Unfortunately, you didn't answer all of the comprehension check questions correctly.</p>
+		<p>Please have another close look at the instructions and work out whether those statements are correct or false.</p>
+		</div>
+
+		<br>
+		<div>
+			<button type="button" class="btn-primary btn-lg"  id="btn_backward" onclick="ins_prev()">Previous</button>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<button type="button" class="btn-primary btn-lg"  id="btn_forward" onclick="ins_next()">Next</button>
+		</div>
+		<br><br><br>
+	</div>
+
+
+	<div id="pg_secondround" class="ctn_nbg" style="display: none;"><!-- style="display: none;" -->
+		<h1>Instructions</h1> <!-- <img src="static/img/ca.png" style="width:50px">  -->
+		<div id="pg_ins_mid" class="ctn" style="padding: 20px;">
+			<p>Well done for 36 trials! The final part of this task would ask you to review some samples you have collected and have another way to make judgments. We will provide screenshots of your samples.</p>
+
+			<div id="mid_type_B">
+				Previously you have choosen between "No, it has no effect" and "Yes, it has an effect". Now please judge "How much does solution X cause plant Y to bloom?". Give a number from 0 to 100. The number represents the causal power of the solution in causing the plant to bloom.<br><br>
+				
+				In other words, imagine a plant that did not receive the solution and did not bloom. The number indicates how likely it would have been to bloom if it had received the solution — from 0, meaning it still would not bloom, to 100, meaning it definitely would bloom.
+
+				However, you do not need to indicate the exact number. You only need to indicate a range (±10) using the black block, as shown in the example below. Your answer will be counted as correct as long as the true score falls within the selected range ⬇️
+
+				<br><br>
+				<div style="text-align: center;"><img src="static/img/demoC.png" style="width:600px;border: solid 1px;"></div><br>
+				This part has no bonus, but we still ask you to make your judgments as carefully as possible.
+			</div>
+
+			<div id="mid_type_M">
+				Previously you have choosen between "It has no effect", "It has a small effect", and "It has a large effect". Now please judge "How much does solution X cause plant Y to bloom?". Give a number from 0 to 100. The number represents the causal power of the solution in causing the plant to bloom.<br><br>
+				
+				In other words, imagine a plant that did not receive the solution and did not bloom. The number indicates how likely it would have been to bloom if it had received the solution — from 0, meaning it still would not bloom, to 100, meaning it definitely would bloom.<br><br>
+
+				However, you do not need to indicate the exact number. You only need to indicate a range (±10) using the black block, as shown in the example below. Your answer will be counted as correct as long as the true score falls within the selected range ⬇️
+				<br><br>
+				<div style="text-align: center;"><img src="static/img/demoC.png" style="width:600px;border: solid 1px;"></div><br>
+				This part has no bonus, but we still ask you to make your judgments as carefully as possible.
+			</div>
+
+			<div id="mid_type_C">
+				Previously you have judge how much does solution X cause plant Y to bloom. Now please have a simpler binary judgment to choose between "No, it has no effect" and "Yes, it has an effect".<br><br>
+
+				In other words, imagine a plant that did not receive the solution and did not bloom. The different options indicate how likely it would have been to bloom if it had received the solution:
+				<ul>
+					<li>
+					No, it has no effect: it still would not bloom.
+					</li>
+					<li>
+					Yes, it has an effect: it would have a chance of blooming.
+					</li>
+				</ul>
+				<br><br>
+				<div style="text-align: center;"><img src="static/img/demoB.png" style="width:600px;border: solid 1px;"></div><br>
+				This part has no bonus, but we still ask you to make your judgments as carefully as possible.
+			</div>
+
+		</div>
+		<br>
+		<div>
+			<button type="button" class="btn-primary btn-lg"  id="btn_second" onclick="my_trial_two()">Next</button>
+		</div>
+		<br><br><br>
+	</div>
+
+	<div id="pg_game" style="display: none;">
+	<!-- <h1>Task</h1> -->
+	<div class="prog_ctn"> <p id="prog_hint" style="margin-bottom: 10px;"></p>
+		<div style="width:900px;height:10px;background: #b0b0b0;">
+			<div id="progress_indicator" style="width:0px;height:10px;background:#bc68f7;"></div>
+		</div>
+	</div>
+<!-- 	<div id="hint_container" class="ctn" style="padding:10px 10px 10px 20px;font-size: 13px;">
+	</div> -->
+
+	<div id="sti_container" class="ctn" style="height: 440px;">
+
+	<!-- <div style="height: 440px;margin-left: auto;margin-right: auto;"> -->
+
+	<div id="ani_container" class="ctn" style=";padding:5px;margin-left: auto;margin-right: auto;">
+
+	<div id="hint_name" style="color:black;text-align: center; font-size:25px; margin-top: 10px;">You are investigating solution A on plant B</div>
+	<div id="current_sample" style="color:black;text-align: center;font-size: 20px;margin-top:10px;">Current samples:</div>
+
+		<div id="divPlot" style="width: 880px;margin-bottom: 10px;margin-left: auto;margin-right: auto;text-align: center;">
+			<img id="img_sti"  width="600" src="static/sti/outblank.png">
+		</div>
+
+	<div id="hint_sample" style="color:black;font-size: 20px;text-align:center;">You have sampled X time(s).</div>
+	<div id="hint_ne" style="color:black;font-size: 20px;text-align:center;margin-top:10px;">There were X case(s) of blooming under solution.</div>
+	<div id="hint_nc" style="color:black;font-size: 20px;text-align:center;margin-top:10px;">There were X case(s) of blooming under no solution.</div>
+
+	<div></div>
+	</div>
+    <!-- </div> -->
+
+	<!-- <div id="guide_container" class="ctn" style="text-align: center;margin-top:0px;margin-bottom:0px;color: #D41876;"></div> -->
+
+	<div id="question_container" class="ctn">
+
+	<div id="second_hint" style="text-align: center;font-size: 20px;display: none;">You have previous choosen: </div>
+	<div id="B_question_ctn" class="noselect" style="padding:10px;width:800px;margin-right:auto;margin-left:auto;">
+
+			<div id="B_question" style="width:800px;text-align: center;">Does solution X cause plant Y to bloom?</div>
+			<div style="margin-left: auto; margin-right: auto; width: 700px;padding-bottom:10px;padding-top:15px;display:flex;justify-content:center;gap:30px;">
+				<label for="B0"><input type="radio" name="ansB" value="0" id="B0" required="required" onclick="clickAns()">No, it has no effect</label>
+				<label for="B1"><input type="radio" name="ansB" value="1" id="B1" required="required" onclick="clickAns()">Yes, it has an effect</label><br>
+			</div>
+	</div>
+
+
+	<div id="M_question_ctn" class="noselect" style="padding:10px;width:800px;margin-right:auto;margin-left:auto;">
+			<div id="M_question" style="width:800px;text-align: center;">How much does solution X cause plant Y to bloom?</div>
+			<div style="margin-left: auto; margin-right: auto; width: 700px;padding-bottom:10px;padding-top:15px; display:flex;justify-content:center;gap:25px;">
+				<label  for="M0"><input type="radio" name="ansM" value="0" id="M0" required="required" onclick="clickAns()">It has no effect</label>
+				<label  for="M1"><input type="radio" name="ansM" value="1" id="M1" required="required" onclick="clickAns()">It has a small effect</label>
+				<label  for="M2"><input type="radio" name="ansM" value="2" id="M2" required="required" onclick="clickAns()">It has a large effect</label><br>
+			</div>
+	</div>
+
+	<div id="C_question_ctn" class="noselect" style="padding:10px;width:800px;margin-right:auto;margin-left:auto;">
+		<div id="C_question" style="width:800px;text-align: center;padding-bottom:10px">How much does solution X cause plant Y to bloom?</div>
+
+		<div style="height: 80px; width: 600px; margin-left: auto;margin-right: auto;position:relative;">
+			<input type="range" class="inact_slider" id="answer_slider" min="0" max="100" step="1" onclick="clickAns()">
+			  <div class="sliderticks">
+			  	<!-- class="sliderticks" -->
+	    		<p ><br>0<br>(Not Effective)</p>
+	    		<p ><br>100<br>(Completely Effective)</p>
+	  		  </div>
+	  	</div>
+	</div>
+
+	</div>
+
+    <div id="conf_container" class="ctn" style="padding:10px;margin-right:auto;margin-left:auto;">
+		<div id="conf_ques" style="text-align: center;"> Your confidence may vary across cases. How confident are you in this particular response? <br> (This won't count toward your reward)<br></div>
+		<div style="margin-left: auto; margin-right: auto; width: 700px;padding-bottom:10px;padding-top:10px">
+				<input type="radio" name="ansConf" value="0" id="Conf0" required="required" onclick="clickAnsConf()"><label for="Conf0">Not confident</label><br>
+				<input type="radio" name="ansConf" value="1" id="Conf1" required="required" onclick="clickAnsConf()"><label for="Conf1">Moderately confident</label><br>
+				<input type="radio" name="ansConf" value="2" id="Conf2" required="required" onclick="clickAnsConf()"><label for="Conf2">Highly confident</label><br>
+		</div>
+
+
+	</div>
+
+	<br>
+	<div align="left">
+		<button id="btn_stop" class="btn-primary btn-lg" style="margin-top: 0px;" onclick="btn_stop_click()">I've seen enough</button> <br>
+		<button id="btn_test" class="btn-primary btn-lg" style="margin-top: 10px;" onclick="btn_test_click()">Test</button><br>
+		<button id="btn_answer" class="btn-primary btn-lg" style="margin-top: 10px;" onclick="btn_next_click()">Next trial</button>
+
+	</div>
+	<br>
+	</div>
+
+	<br><br><br>
+	</div>
+
+	<div id="pg_ques" class="ctn_nbg" style="display: none;">
+		<h1>Demographic Information</h1>
+
+		<div class="ctn" style="padding: 20px;">
+		<p>Well done! You have finished the main task! </p>
+		<p>Feedback on one or some of the following questions: How did you work out the answers? What did you find particularly easy/hard? Did you have a strategy, if so what was it? Did you spot any bugs or errors? (optional)</p>
+		<textarea id='text_feedback' rows="4" cols="60"></textarea>
+		<p><b>Please answer the following questions about yourself to complete the experiment:</b></p>
+		<p>1. Age <span style="color: red">*</span>: <input type="number" name="age" id="age" oninput="survey_check()"> years</p>
+		<p>2. Gender <span style="color: red">*</span>: 
+			<select name="gender" id="gender" onchange="survey_check()">
+					<option id="gender_unselected" value="--" SELECTED>
+	                <option value="female">Female</option>
+	                <option value="male">Male</option>
+	                <option value="nonbinary">Non binary</option>
+	                <option value="noresponse">I'd prefer not to respond</option>
+	        </select>
+		</p><br>
+		</div>
+		<br>
+		<div align="center">
+            <button id="btn_finish" disabled ="true" class="btn-primary btn-lg" onclick="task_bye()">Finish</button>
+        </div><br>
+	</div>
+
+	<div id="pg_bye" class="ctn_nbg" style="display: none;">
+		<h1 id="well_done">Data uploading...</h1>
+		<div id="pg_bye_good" class="ctn" style="padding: 20px;display: none;">
+			<p>Thank you very much!! Data have been saved.
+			<p>Click <a href='https://app.prolific.com/submissions/complete?cc=CTYU3AF2'>here</a> to redirect to Prolific."</p>
+		</div> 
+		<div id="pg_upload" class="ctn" style="padding: 20px;display: none;">
+			<p>Sorry, it seems that your network cannot connect to our database successfully. You need to upload the data manually.</p>
+
+			<p><b>Step 1:</b></p>
+			<p>Click <a href="javascript:void(0)" onclick='SaveData(0)'>here</a> to save your data (Inference.json) to your computer (you might need to wait a few seconds after clicking).</p>
+
+			<p><i>(Json is a common and safe file type developed under web languages. It is used to save data just like txt,csv. It can help us to merge your data with other participants later easily.)</i></p>
+
+			<p><b>Step 2:</b></p>
+			<p>Upload the file via <a href="https://forms.gle/UBfAgqV4xfvqJGiu6" target="_blank">this goolge form</a>.</p>
+
+			<p>If you prefer not to sign in a google account, you can also email the file directly to <b>gongtiw@gmail.com</b></p>
+			<br><br>
+			<button id="btn_upload" class="btn-primary btn-lg" disabled ="true" onclick="finish_upload()"><b>I have uploaded (or emailed) the data.</b></button>
+			</div> 
+
+	</div>
+
+</body>
+
+<script type="text/javascript">
+ins_show()
+$('#pg_cons').css('display','none');
+$('#pg_ins').css('display','none');
+$('#pg_game').css('display','block');
+my_trial()
+</script>
+
+</html>
