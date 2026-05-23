@@ -232,7 +232,7 @@ function my_trial(){
 	$("#hint_name").html("You are investigating solution "+slu_nam[trial_num]+" on plant "+pla_nam[trial_num])
 	$("#B_question").html("Does solution "+slu_nam[trial_num]+" cause plant "+pla_nam[trial_num]+" to bloom?")
 	$("#M_question").html("How much does solution "+slu_nam[trial_num]+" cause plant "+pla_nam[trial_num]+" to bloom?")
-	$("#C_question").html("How much does solution "+slu_nam[trial_num]+" cause plant "+pla_nam[trial_num]+" to bloom?")
+	$("#C_question").html("How much does solution "+slu_nam[trial_num]+" cause plant "+pla_nam[trial_num]+" to bloom? <br> (Make sure your estimate is covered by the black block.)")
   // $("#guide_container").html("Click 'Start' to watch the clip whenever you are ready")
 
   trial_start_time=Date.now()
@@ -257,7 +257,9 @@ function btn_test_click(){
 
 	setTimeout(showout,500) 
 
-	if (sp_num<30){setTimeout(resample,1000)}
+	if (sp_num<30){setTimeout(resample,1000)}else{
+		$("#btn_stop").prop('disabled', false);
+	}
 
 }
 
@@ -398,7 +400,7 @@ function my_trial_two(){
 	$("#hint_name").html("You were investigating solution "+slu_nam[n_second[trial2_num]]+" on plant "+pla_nam[n_second[trial2_num]]+".")
 	$("#B_question").html("Does solution "+slu_nam[n_second[trial2_num]]+" cause plant "+pla_nam[n_second[trial2_num]]+" to bloom?")
 	$("#M_question").html("How much does solution "+slu_nam[n_second[trial2_num]]+" cause plant "+pla_nam[n_second[trial2_num]]+" to bloom?")
-	$("#C_question").html("How much does solution "+slu_nam[n_second[trial2_num]]+" cause plant "+pla_nam[n_second[trial2_num]]+" to bloom?")
+	$("#C_question").html("How much does solution "+slu_nam[n_second[trial2_num]]+" cause plant "+pla_nam[n_second[trial2_num]]+" to bloom? <br> (Make sure your estimate is covered by the black block.)")
 
 	itf_update();
 
