@@ -455,7 +455,20 @@ function itf_update(){
 }
 
 
-function SaveData(dbs){
+
+const supabaseUrl =
+  'https://tbbmhgkaxgxbxqomkqda.supabase.co';
+
+const supabaseKey =
+  'sb_publishable_SIQU4kSfgO8Vh_Fw75fQcg_lP0ARKr8';
+
+const supabaseClient =
+  supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+  );
+
+async function SaveData(dbs){
 
 	var feedback=document.getElementById("text_feedback").value;
 	feedback=feedback.replace(/'/g,"\\'");
@@ -471,14 +484,14 @@ function SaveData(dbs){
 	if(dbs==0){
 		var a = document.createElement("a");
 		var file = new Blob([JSON.stringify(
-			{theExp:exp_id,
-			theID:idpro+"_"+myABI+"_"+comp_time+"_"+exp_start_time+"_"+exp_end_time,
-			theAge:age,
-			theGender:gender,
-			theFeedback:feedback,
-			theData:JSON.stringify(mydata),
-			theSample:JSON.stringify(mysample),
-			theAns:JSON.stringify(myans)
+			{exp:exp_id,
+			participant_id:idpro+"_"+myABI+"_"+comp_time+"_"+exp_start_time+"_"+exp_end_time,
+			age:age,
+			gender:gender,
+			feedback:feedback,
+			data:JSON.stringify(mydata),
+			sample:JSON.stringify(mysample),
+			answers:JSON.stringify(myans)
 		}
 			)], 
 			{type: "application/json"});
@@ -489,33 +502,55 @@ function SaveData(dbs){
 	}
 
 
-	jQuery.ajax({
-		url: 'static/php/save_data.php',
-		type:'POST',
-		data:{theExp:exp_id,
-			theID:idpro+"_"+myABI+"_"+comp_time+"_"+exp_start_time+"_"+exp_end_time,
-			theAge:age,
-			theGender:gender,
-			theFeedback:feedback,
-			theData:JSON.stringify(mydata),
-			theSample:JSON.stringify(mysample),
-			theAns:JSON.stringify(myans)
-		},
-		success:function(data){
-			if (data==233){
-				$('#well_done').html("Oops!");
-				$('#pg_upload').css('display','block');
-			}else{
-				$('#well_done').html("");
-				$('#pg_bye_good').css('display','block');
-			}
-		},
-		error:function(xhr, status, error){
-			$('#well_done').html("Oops!");
-			$('#pg_upload').css('display','block');
-			setTimeout(btn_upload_show,10000) 
-		}
-	})
+	const result = await supabaseClient
+    .from('experiment_data')
+    .insert([
+        {
+
+            exp: exp_id,
+            participant_id:
+                idpro + "_" +
+                myABI + "_" +
+                comp_time + "_" +
+                exp_start_time + "_" +
+                exp_end_time,
+
+            age: age,
+            gender: gender,
+            feedback: feedback,
+
+            data: mydata,
+            sample: mysample,
+            answers: myans,
+
+            user_agent: navigator.userAgent,
+
+            screen_width: window.innerWidth,
+            screen_height: window.innerHeight,
+
+            timezone:
+                Intl.DateTimeFormat()
+                    .resolvedOptions()
+                    .timeZone,
+
+            language: navigator.language
+        }
+    ]);
+
+if(result.error){
+
+    console.error(result.error);
+
+    $('#well_done').html("Oops!");
+    $('#pg_upload').css('display','block');
+    setTimeout(btn_upload_show,10000) 
+
+}else{
+
+    $('#well_done').html("");
+    $('#pg_bye_good').css('display','block');
+}
+
 
 }
 
@@ -561,5 +596,3 @@ function randPerm(n) {
   }
   return result
 }
-
-// ipcheck()
