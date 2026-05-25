@@ -487,7 +487,7 @@ async function SaveData(dbs){
 		var a = document.createElement("a");
 		var file = new Blob([JSON.stringify(
 			{exp:exp_id,
-			participant_id:idpro+"_"+myABI+"_"+comp_time+"_"+exp_start_time+"_"+exp_end_time,
+			participant_id:idpro+"_"+myABI+"_"+myCond+ "_" +comp_time+"_"+exp_start_time+"_"+exp_end_time,
 			age:age,
 			gender:gender,
 			feedback:feedback,
@@ -513,6 +513,7 @@ async function SaveData(dbs){
             participant_id:
                 idpro + "_" +
                 myABI + "_" +
+                myCond+ "_" +
                 comp_time + "_" +
                 exp_start_time + "_" +
                 exp_end_time,
