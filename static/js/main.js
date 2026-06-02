@@ -257,7 +257,7 @@ function btn_test_click(){
 
 	setTimeout(showout,500) 
 
-	if (sp_num<30){setTimeout(resample,1000)}else{
+	if (sp_num<60){setTimeout(resample,1000)}else{
 		$("#btn_stop").prop('disabled', false);
 	}
 
@@ -274,7 +274,7 @@ function resample(){
 }
 
 function hint_update(){//sp_num,ne_num,nc_num
-	$("#hint_sample").html("You have sampled "+sp_num+" time(s).");
+	$("#hint_sample").html("You have tested "+sp_num+" time(s).");
 	$("#hint_ne").html("There were "+ne_num+" case(s) of blooming under solution.");
 	$("#hint_nc").html("There were "+nc_num+" case(s) of blooming under no solution.");
 }
