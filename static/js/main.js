@@ -219,7 +219,7 @@ function my_trial(){
 	
 	hint_update();
 
-	$("#progress_indicator").css('width',Number(100*trial_num/trial_total)+'%');
+	$("#progress_indicator").css('width',Number(80*trial_num/trial_total)+'%');
 	// $("#prog_hint").html('Progress: '+trial_num+'/36');
 
 	$('#B0,#B1,#M0,#M1,#M2,#Conf0,#Conf1,#Conf2').prop('checked', false);
