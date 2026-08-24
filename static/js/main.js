@@ -34,7 +34,7 @@ const trial_list=shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,
 const sti_power=shuffle(sti_power_all)
 const sti_baserate=shuffle(sti_baserate_all).slice(0, trial_total)
 
-const myCond=shuffle(["C","B","M"])[1]
+const myCond=shuffle(["C","M"])[1]
 
 
 var ctn_m;
